@@ -1,0 +1,51 @@
+#! /bin/sh
+
+#    Looperlative LP1 audio looper
+#    Copyright (C) 2005-2013 Robert Amstadt dba Looperlative Audio Products
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; version 2 of the License only.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License along
+#    with this program; if not, write to the Free Software Foundation, Inc.,
+#    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+#
+#    Proprietary licensing of the software as modified only by Looperlative
+#    Audio Products is available.  Please contact Looperlative Audio Products
+#    for details.
+#
+#    Email: licensing@looperlative.com
+#
+#    US mail:	Looperlative Audio Products
+#    		6081 Meridian Ave. #70-315
+#		San Jose, CA 95120
+
+rm -rf image
+mkdir image
+mkdir image/html
+mkdir image/cgi-bin
+
+cp boa.conf image
+cp upgrade_server image
+cp *.html image/html
+cp *.cgi image/cgi-bin
+cp looper.config image/cgi-bin
+chmod +x image/cgi-bin/*
+
+(cd image/cgi-bin; ln -s tracks.cgi track1.wav)
+(cd image/cgi-bin; ln -s tracks.cgi track2.wav)
+(cd image/cgi-bin; ln -s tracks.cgi track3.wav)
+(cd image/cgi-bin; ln -s tracks.cgi track4.wav)
+(cd image/cgi-bin; ln -s tracks.cgi track5.wav)
+(cd image/cgi-bin; ln -s tracks.cgi track6.wav)
+(cd image/cgi-bin; ln -s tracks.cgi track7.wav)
+(cd image/cgi-bin; ln -s tracks.cgi track8.wav)
+
+(cd image; tar cf ../lp1-www.tar .)
+cp lp1-www.tar /tftpboot
